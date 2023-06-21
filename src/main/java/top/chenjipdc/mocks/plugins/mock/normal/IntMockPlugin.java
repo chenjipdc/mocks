@@ -1,0 +1,86 @@
+package top.chenjipdc.mocks.plugins.mock.normal;
+
+import com.alibaba.fastjson2.JSONObject;
+import com.google.auto.service.AutoService;
+import top.chenjipdc.mocks.config.Config;
+import top.chenjipdc.mocks.config.mock.normal.IntMockConfig;
+import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
+import top.chenjipdc.mocks.utils.NumericUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+@AutoService(MockPlugin.class)
+public class IntMockPlugin extends AbstractMockPlugin<Integer> {
+
+    private IntMockConfig intConfig;
+
+    private AtomicInteger value = new AtomicInteger(1);
+
+    @Override
+    public String type() {
+        return "int";
+    }
+
+    @Override
+    public void init(Config.MocksConfig config) {
+        super.init(config);
+        intConfig = JSONObject.parseObject(config.getConfig(),
+                IntMockConfig.class);
+
+        checkAndInit();
+    }
+
+    @Override
+    public Map<String, Integer> value() {
+        Map<String, Integer> map = new HashMap<>();
+        for (String column : aliases.values()) {
+            if (intConfig != null) {
+                // 自增
+                if (intConfig.getAutoincrement()) {
+                    int value = this.value.getAndIncrement();
+                    if (value == Integer.MAX_VALUE) {
+                        throw new RuntimeException("自增已超出int数据范围, 请调整生成的数据总量");
+                    }
+                    map.put(column,
+                            value);
+                    break;
+                }
+
+                Integer start = intConfig.getStart();
+                Integer end = intConfig.getEnd();
+                if (start != null && end != null) {
+                    map.put(column,
+                            NumericUtils.nextInt(start,
+                                    end));
+                    break;
+                }
+                if (start != null) {
+                    map.put(column,
+                            NumericUtils.nextInt(start,
+                                    Integer.MAX_VALUE));
+                    break;
+                }
+                if (end != null) {
+                    map.put(column,
+                            NumericUtils.nextInt(0,
+                                    end));
+                    break;
+                }
+            }
+            map.put(column,
+                    NumericUtils.nextInt());
+        }
+        return map;
+    }
+
+    private void checkAndInit() {
+        if (intConfig.getAutoincrement()) {
+            if (intConfig.getStart() != null) {
+                value = new AtomicInteger(intConfig.getStart());
+            }
+        }
+    }
+}

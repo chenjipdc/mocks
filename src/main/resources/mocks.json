@@ -1,0 +1,168 @@
+[
+  {
+    "size": 1000,
+    "mocks": [
+      {
+        "type": "long",
+        "columns": [
+          "column1"
+        ],
+        "config": {
+          "autoincrement": true,
+          "start": 1,
+          "end": 10000
+        }
+      },
+      {
+        "type": "long",
+        "columns": [
+          "long"
+        ],
+        "config": {
+          "autoincrement": true,
+          "start": 10000,
+          "end": 20000
+        }
+      },
+      {
+        "type": "name",
+        "columns": [
+          "column2"
+        ],
+        "config": {
+        }
+      },
+      {
+        "type": "int",
+        "columns": [
+          "column3"
+        ],
+        "config": {
+          "start": 10,
+          "end": 100
+        }
+      },
+      {
+        "type": "date",
+        "columns": [
+          "column4"
+        ],
+        "config": {
+          "start": "2023-06-01 00:00:00",
+          "end": "2023-06-10 00:00:00"
+        }
+      },
+      {
+        "type": "mysql",
+        "columns": [
+          "id"
+        ],
+        "aliases": {
+          "id": "product_id"
+        },
+        "config": {
+          "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/ys?characterEncoding=utf8",
+          "username": "root",
+          "password": "root",
+          "table": "ys_product"
+        }
+      },
+      {
+        "type": "mysql",
+        "columns": [
+          "product_name"
+        ],
+        "config": {
+          "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/ys?characterEncoding=utf8",
+          "username": "root",
+          "password": "root",
+          "table": "ys_product"
+        }
+      },
+      {
+        "type": "text",
+        "columns": [
+          "column6"
+        ],
+        "config": {
+          "text": "aaa,bbb,ccc",
+          "split": ","
+        }
+      },
+      {
+        "type": "file",
+        "columns": [
+          "column7"
+        ],
+        "config": {
+          "path": "/home/pdc/data/test/lan.txt",
+          "split": ","
+        }
+      },
+      {
+        "type": "double",
+        "columns": [
+          "column8"
+        ],
+        "config": {
+          "start": 10.0,
+          "end": 12.0
+        }
+      },
+      {
+        "type": "thread",
+        "columns": [
+          "column9"
+        ],
+        "config": {
+        }
+      },
+      {
+        "type": "ip",
+        "columns": [
+          "column10"
+        ],
+        "config": {
+          "type": "v4_lan_a"
+        }
+      },
+      {
+        "type": "mongo",
+        "columns": [
+          "id"
+        ],
+        "aliases": {
+          "id": "mongo_id"
+        },
+        "config": {
+          "address": "127.0.0.1:27017",
+          "database": "pdc",
+          "collection": "test_user"
+        }
+      }
+    ],
+    "sinks": [
+      {
+        "type": "log",
+        "loop": 10,
+        "mappings": {
+          "id": "column1",
+          "name": "column2",
+          "age": "column3",
+          "bir": "column4",
+          "amount": "column8",
+          "thread_name": "column9",
+          "ip": "column10",
+          "product_id": "product_id",
+          "product_name": "product_name",
+          "l": "long"
+        },
+        "config": {
+          "append": true,
+          "path": "/tmp/file-json.txt",
+          "batch": 1000
+        }
+      }
+    ]
+  }
+]

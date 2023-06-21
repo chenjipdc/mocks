@@ -1,0 +1,53 @@
+package top.chenjipdc.mocks.plugins.sink;
+
+import lombok.extern.slf4j.Slf4j;
+import top.chenjipdc.mocks.config.Config;
+import top.chenjipdc.mocks.plugins.SinkPlugin;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+@Slf4j
+public abstract class AbstractSinkPlugin implements SinkPlugin {
+
+    protected Config.SinksConfig config;
+
+    private long start = System.currentTimeMillis();
+
+
+    public void init(Config.SinksConfig config) {
+        this.config = config;
+        startTiming();
+    }
+
+    public Map<String, Object> mappingsConvert(Map<String, Object> values) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, String> mappings = config.getMappings();
+        if (mappings != null) {
+            mappings.forEach((k, v) -> map.put(k,
+                    values.get(v)));
+            return map;
+        } else {
+            return values;
+        }
+    }
+
+
+    public void stop() {
+        stopTiming();
+    }
+
+    public void startTiming() {
+        start = System.currentTimeMillis();
+    }
+
+    public void stopTiming() {
+        log.info("sink=>" + config.getName() + logPrefix() + "耗时(秒): {}",
+                (System.currentTimeMillis() - start) / 1000.00);
+    }
+
+    public String logPrefix() {
+        return "处理";
+    }
+}

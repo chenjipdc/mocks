@@ -1,0 +1,10 @@
+{
+  "corePoolSize": 5,
+  "maxPoolSize": 20,
+  "capacity": 50000,
+  "keepAliveTime": 0,
+  "timeUnit": "MINUTES",
+  "daemon": false,
+  "priority": 1,
+  "proxyTargetClass": true
+}
