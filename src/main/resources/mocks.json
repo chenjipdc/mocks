@@ -1,6 +1,6 @@
 [
   {
-    "size": 1000,
+    "size": 100,
     "mocks": [
       {
         "type": "long",
@@ -144,7 +144,7 @@
     "sinks": [
       {
         "type": "log",
-        "loop": 10,
+        "loop": 1,
         "mappings": {
           "id": "column1",
           "name": "column2",
@@ -161,6 +161,24 @@
           "append": true,
           "path": "/tmp/file-json.txt",
           "batch": 1000
+        }
+      },
+      {
+        "type": "rocketmq",
+        "loop": 1,
+        "mappings": {
+          "id": "column1",
+          "name": "column2",
+          "age": "column3",
+          "bir": "column4",
+          "amount": "column8",
+          "thread_name": "column9",
+          "ip": "column10",
+          "product_id": "product_id",
+          "product_name": "product_name",
+          "l": "long"
+        },
+        "config": {
         }
       }
     ]
