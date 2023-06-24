@@ -20,7 +20,7 @@ public class ConfigLoader {
 
     private static final String MOCKS_CONFIG_DIR = "config/";
 
-    private static final String MOCKS_POOLS_SINK = "example-config/pools-sink.json";
+    private static final String MOCKS_POOLS_SINK = "pools-sink.json";
 
     private static final String HOME_CONFIG_PATH = System.getProperty("user.home") + "/.mocks/" + MOCKS_CONFIG_DIR;
 
