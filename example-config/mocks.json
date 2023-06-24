@@ -143,27 +143,6 @@
     ],
     "sinks": [
       {
-        "type": "log",
-        "loop": 1,
-        "mappings": {
-          "id": "column1",
-          "name": "column2",
-          "age": "column3",
-          "bir": "column4",
-          "amount": "column8",
-          "thread_name": "column9",
-          "ip": "column10",
-          "product_id": "product_id",
-          "product_name": "product_name",
-          "l": "long"
-        },
-        "config": {
-          "append": true,
-          "path": "/tmp/file-json.txt",
-          "batch": 1000
-        }
-      },
-      {
         "type": "rocketmq",
         "loop": 1,
         "mappings": {
