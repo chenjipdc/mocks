@@ -10,6 +10,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.io.File;
+import java.math.BigInteger;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
@@ -42,8 +43,12 @@ public class FileJsonMockPlugin extends AbstractMockPlugin<Object> {
 
             Map<String, Object> map = new HashMap<>();
             for (String column : columns) {
-                map.put(column,
-                        jsonObject.get(column));
+                Object object = jsonObject.get(column);
+                if (object instanceof BigInteger) {
+                    object = Long.parseLong(object.toString());
+                }
+                map.put(aliases.get(column),
+                        object);
             }
             values.add(map);
 
