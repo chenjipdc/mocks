@@ -12,6 +12,11 @@ import java.util.Map;
 public class Config {
 
     /**
+     * 配置排序
+     */
+    private Integer order = Integer.MAX_VALUE;
+
+    /**
      * 生成的数据条数
      */
     private long size;
