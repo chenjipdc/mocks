@@ -64,6 +64,13 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.17.0</version>
+            <scope>compile</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
