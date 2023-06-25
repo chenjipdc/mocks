@@ -37,7 +37,7 @@ public class ConfigLoader {
         }
 
         // from config directory
-        configList = getConfigsFromPath(jarConfigDir());
+        configList = getConfigsFromPath(jarDir() + "/" + MOCKS_CONFIG_DIR);
         if (configList != null && configList.size() > 0) {
             configs.addAll(configList);
         }
@@ -57,7 +57,7 @@ public class ConfigLoader {
     }
 
     @SneakyThrows
-    private String jarConfigDir() {
+    private String jarDir() {
         String jarPath = ConfigLoader.class
                 .getProtectionDomain()
                 .getCodeSource()
@@ -65,7 +65,7 @@ public class ConfigLoader {
                 .toURI()
                 .getPath();
         return jarPath.substring(0,
-                jarPath.lastIndexOf("/")) + "/" + MOCKS_CONFIG_DIR;
+                jarPath.lastIndexOf("/"));
     }
 
     @SneakyThrows
@@ -105,7 +105,7 @@ public class ConfigLoader {
         }
 
         // from config directory
-        config = getPoolsConfigFromPath(jarConfigDir() + "/" + MOCKS_POOLS_SINK);
+        config = getPoolsConfigFromPath(jarDir() + "/" + MOCKS_POOLS_SINK);
         if (config != null) {
             return config;
         }
