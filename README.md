@@ -21,7 +21,7 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 1. 直接clone项目到本地，通过ide执行main方法
 2. 直接clone项目，运行`mvn clean package -DskipTests`打包（target目录下mocks-xxx.jar为可执行jar，libs为依赖jar包），执行`java -jar mocks-xxx.jar`运行即可。
 
-## 项目配置文件
+## [项目配置说明wiki](https://github.com/chenjipdc/mocks/wiki/%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E)
 
 > mock跟sink配置：会读目录`~/.mock/config/`跟当前jar包同级目录`config/`下的所有`*.json`文件当作mock跟sink的配置。
 
@@ -130,6 +130,8 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
   "priority": 1
 }
 ```
+
+----
 
 ### mock插件
 #### 普通
