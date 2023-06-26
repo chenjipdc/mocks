@@ -6,6 +6,7 @@ import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -24,7 +25,7 @@ public class ThreadMockPlugin extends AbstractMockPlugin<String> {
 
     @Override
     public Map<String, String> value() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             map.put(column,
                     Thread.currentThread()

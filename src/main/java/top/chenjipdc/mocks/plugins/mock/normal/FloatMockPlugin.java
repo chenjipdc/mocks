@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -30,7 +31,7 @@ public class FloatMockPlugin extends AbstractMockPlugin<Float> {
 
     @Override
     public Map<String, Float> value() {
-        Map<String, Float> map = new HashMap<>();
+        Map<String, Float> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             if (floatConfig != null) {
                 Float start = floatConfig.getStart();

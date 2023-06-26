@@ -13,10 +13,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AutoService(MockPlugin.class)
 public class MongoMockPlugin extends AbstractMockPlugin<Object> {
@@ -65,7 +62,7 @@ public class MongoMockPlugin extends AbstractMockPlugin<Object> {
                     .cursor()) {
                 while (cursor.hasNext()) {
                     Document document = cursor.next();
-                    Map<String, Object> map = new HashMap<>();
+                    Map<String, Object> map = new LinkedHashMap<>();
                     for (String column : columns) {
                         Object object = document.get(column);
                         if (object instanceof BigInteger) {

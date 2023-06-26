@@ -31,7 +31,7 @@ public class TextMockPlugin extends AbstractMockPlugin<Object> {
 
     @Override
     public Map<String, Object> value() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             map.put(column,
                     values.get(NumericUtils.nextInt(values.size())));

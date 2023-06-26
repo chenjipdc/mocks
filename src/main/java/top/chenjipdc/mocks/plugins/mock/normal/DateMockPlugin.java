@@ -10,6 +10,7 @@ import top.chenjipdc.mocks.utils.DateUtils;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -31,7 +32,7 @@ public class DateMockPlugin extends AbstractMockPlugin<Object> {
 
     @Override
     public Map<String, Object> value() {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             if (dateConfig != null) {
                 String timeZoneId = dateConfig.getTimeZoneId();

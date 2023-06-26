@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.id.Sequence;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class SnowflakeMockPlugin extends AbstractMockPlugin<Long> {
 
     @Override
     public Map<String, Long> value() {
-        Map<String, Long> map = new HashMap<>();
+        Map<String, Long> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             map.put(column,
                     sequence.nextId());

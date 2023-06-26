@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -30,7 +31,7 @@ public class BytesMockPlugin extends AbstractMockPlugin<Byte[]> {
 
     @Override
     public Map<String, Byte[]> value() {
-        Map<String, Byte[]> map = new HashMap<>();
+        Map<String, Byte[]> map = new LinkedHashMap<>();
         int length = bytesConfig.getLength();
 
         for (String column : aliases.values()) {

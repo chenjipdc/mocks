@@ -45,7 +45,7 @@ public class MockService implements LifeCycle {
     }
 
     public Map<String, Object> get() {
-        Map<String, Object> map = new TreeMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         allColumn.forEach(column -> map.putAll(dsPluginMap.get(column)
                 .value()));
         return map;
@@ -71,12 +71,14 @@ public class MockService implements LifeCycle {
     }
 
     private Collection<String> getColumns(Config.MocksConfig mock) {
-        Map<String, String> aliases = mock.getAliases();
-        if (aliases == null) {
-            aliases = new HashMap<>();
-        }
+        Map<String, String> aliases = new LinkedHashMap<>();
         for (String column : mock.getColumns()) {
-            if (!aliases.containsKey(column)) {
+            if (mock.getAliases() != null && mock.getAliases()
+                    .containsKey(column)) {
+                aliases.put(column,
+                        mock.getAliases()
+                                .get(column));
+            } else {
                 aliases.put(column,
                         column);
             }

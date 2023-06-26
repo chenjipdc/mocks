@@ -6,6 +6,7 @@ import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.plugins.MockPlugin;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public abstract class AbstractMockPlugin<T> implements MockPlugin<T> {
     protected List<String> columns;
 
     /**
-     * 字段别名，主要用于多数据库字段名字冲突
+     * 字段别名，主要用于数据池字段名字冲突
      */
     protected Map<String, String> aliases;
 
@@ -35,7 +36,7 @@ public abstract class AbstractMockPlugin<T> implements MockPlugin<T> {
         this.aliases = config.getAliases();
 
         if (aliases == null) {
-            aliases = new HashMap<>();
+            aliases = new LinkedHashMap<>();
         }
         for (String column : config.getColumns()) {
             if (!aliases.containsKey(column)) {

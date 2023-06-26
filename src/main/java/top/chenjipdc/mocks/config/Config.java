@@ -1,8 +1,9 @@
 package top.chenjipdc.mocks.config;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import lombok.Getter;
 import lombok.Setter;
-
+import top.chenjipdc.mocks.json.ObjectReaderImplLinkHashMapString;
 
 import java.util.List;
 import java.util.Map;
@@ -58,6 +59,7 @@ public class Config {
         /**
          * 字段别名，主要用于数据库字段等名字冲突
          */
+        @JSONField(deserializeUsing = ObjectReaderImplLinkHashMapString.class)
         private Map<String, String> aliases;
 
         /**
@@ -92,6 +94,7 @@ public class Config {
         /**
          * key为表字段名称, value为数据源ds的mocks的alias
          */
+        @JSONField(deserializeUsing = ObjectReaderImplLinkHashMapString.class)
         private Map<String, String> mappings;
 
         /**

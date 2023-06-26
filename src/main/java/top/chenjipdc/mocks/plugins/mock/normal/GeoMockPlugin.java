@@ -7,6 +7,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.GeoUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -24,7 +25,7 @@ public class GeoMockPlugin extends AbstractMockPlugin<GeoUtils.GeoPoint> {
 
     @Override
     public Map<String, GeoUtils.GeoPoint> value() {
-        final Map<String, GeoUtils.GeoPoint> map = new HashMap<>();
+        final Map<String, GeoUtils.GeoPoint> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             map.put(column,
                     GeoUtils.random());

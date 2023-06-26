@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -29,7 +30,7 @@ public class DoubleMockPlugin extends AbstractMockPlugin<Double> {
 
     @Override
     public Map<String, Double> value() {
-        Map<String, Double> map = new HashMap<>();
+        Map<String, Double> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             if (doubleConfig != null) {
                 Double start = doubleConfig.getStart();

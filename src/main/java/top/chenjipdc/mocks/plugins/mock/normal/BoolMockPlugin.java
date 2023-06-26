@@ -7,6 +7,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -25,7 +26,7 @@ public class BoolMockPlugin extends AbstractMockPlugin<Boolean> {
 
     @Override
     public Map<String, Boolean> value() {
-        Map<String, Boolean> map = new HashMap<>();
+        Map<String, Boolean> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             map.put(column,
                     NumericUtils.nextBool());

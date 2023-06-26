@@ -13,10 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @AutoService(MockPlugin.class)
 public class MysqlMockPlugin extends AbstractMockPlugin<Object> {
@@ -49,7 +46,7 @@ public class MysqlMockPlugin extends AbstractMockPlugin<Object> {
             }
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new LinkedHashMap<>();
                 for (String column : columns) {
                     Object object = rs.getObject(column);
                     if (object instanceof BigInteger) {

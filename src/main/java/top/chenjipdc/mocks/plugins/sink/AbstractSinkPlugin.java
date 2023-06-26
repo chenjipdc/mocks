@@ -5,6 +5,7 @@ import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.plugins.SinkPlugin;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -21,8 +22,14 @@ public abstract class AbstractSinkPlugin implements SinkPlugin {
         startTiming();
     }
 
+    /**
+     * 将数据转换成mappings里的数据，主要转换key
+     *
+     * @param values 数据池的一条数据
+     * @return 转换后的数据
+     */
     public Map<String, Object> mappingsConvert(Map<String, Object> values) {
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         Map<String, String> mappings = config.getMappings();
         if (mappings != null) {
             mappings.forEach((k, v) -> map.put(k,

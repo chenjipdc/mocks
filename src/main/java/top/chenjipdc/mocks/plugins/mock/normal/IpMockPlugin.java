@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.IpUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
@@ -30,7 +31,7 @@ public class IpMockPlugin extends AbstractMockPlugin<String> {
 
     @Override
     public Map<String, String> value() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             if (ipConfig.getType() != null) {
                 switch (ipConfig.getType()) {

@@ -41,7 +41,7 @@ public class FileJsonMockPlugin extends AbstractMockPlugin<Object> {
             JSONObject jsonObject = JSONObject.parseObject(json,
                     JSONObject.class);
 
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new LinkedHashMap<>();
             for (String column : columns) {
                 Object object = jsonObject.get(column);
                 if (object instanceof BigInteger) {

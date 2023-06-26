@@ -9,6 +9,7 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,7 +37,7 @@ public class ShortMockPlugin extends AbstractMockPlugin<Short> {
 
     @Override
     public Map<String, Short> value() {
-        Map<String, Short> map = new HashMap<>();
+        Map<String, Short> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
             if (shortConfig != null) {
                 // 自增
