@@ -71,6 +71,14 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
