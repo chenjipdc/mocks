@@ -6,7 +6,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import lombok.SneakyThrows;
-import org.apache.commons.lang3.StringUtils;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.mq.RabbitMqSinkConfig;
 import top.chenjipdc.mocks.plugins.SinkPlugin;

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>top.chenjipdc</groupId>
     <artifactId>mocks</artifactId>
     <version>0.0.1</version>
 
@@ -12,90 +12,129 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- version-->
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+
+        <junit.version>4.13.2</junit.version>
+
+        <auto-service.verion>1.1.0</auto-service.verion>
+        <fastjson2.version>2.0.33</fastjson2.version>
+        <logback-classic.version>1.3.7</logback-classic.version>
+        <lombok.version>1.18.24</lombok.version>
+
+        <mysql-connector-java.version>8.0.20</mysql-connector-java.version>
+        <mongo-java-driver.version>3.12.12</mongo-java-driver.version>
+
+        <rocketmq-client.version>5.1.1</rocketmq-client.version>
+        <amqp-client.version>5.17.0</amqp-client.version>
+        <kafka-clients.version>3.5.0</kafka-clients.version>
+
+        <elasticsearch-java.version>7.17.10</elasticsearch-java.version>
+        <jackson-databind.version>2.12.3</jackson-databind.version>
+
+        <!-- scope-->
+        <dependency.scope>compile</dependency.scope>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+        </profile>
+        <profile>
+            <id>release</id>
+            <properties>
+                <dependency.scope>provided</dependency.scope>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
 
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
-            <version>1.1.0</version>
+            <version>${auto-service.verion}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>
-            <version>2.0.33</version>
+            <version>${fastjson2.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.3.7</version>
+            <version>${logback-classic.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.20</version>
-            <scope>compile</scope>
+            <version>${mysql-connector-java.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.12</version>
-            <scope>compile</scope>
+            <version>${mongo-java-driver.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
-            <version>5.1.1</version>
-            <scope>compile</scope>
+            <version>${rocketmq-client.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
-            <version>5.17.0</version>
-            <scope>compile</scope>
+            <version>${amqp-client.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>3.5.0</version>
-            <scope>compile</scope>
+            <version>${kafka-clients.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>co.elastic.clients</groupId>
             <artifactId>elasticsearch-java</artifactId>
-            <version>7.17.10</version>
-            <scope>compile</scope>
+            <version>${elasticsearch-java.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.12.3</version>
-            <scope>compile</scope>
+            <version>${jackson-databind.version}</version>
+            <scope>${dependency.scope}</scope>
         </dependency>
 
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -106,16 +145,16 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>${maven-source-plugin.version}</version>
                     <configuration>
                         <attach>true</attach>
                     </configuration>
@@ -131,7 +170,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>${maven-jar-plugin.version}</version>
                     <configuration>
                         <archive>
                             <manifest>
@@ -147,7 +186,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.5.0</version>
+                    <version>${maven-dependency-plugin.version}</version>
                     <executions>
                         <execution>
                             <id>copy-dependencies</id>
@@ -159,6 +198,8 @@
                                 <outputDirectory>
                                     ${project.build.directory}/libs
                                 </outputDirectory>
+                                <excludeScope>provided</excludeScope>
+                                <useSubDirectoryPerScope>true</useSubDirectoryPerScope>
                             </configuration>
                         </execution>
                     </executions>
