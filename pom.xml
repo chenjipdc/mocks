@@ -35,6 +35,7 @@
 
         <elasticsearch-java.version>7.17.10</elasticsearch-java.version>
         <jackson-databind.version>2.12.3</jackson-databind.version>
+        <clickhouse-jdbc.version>0.4.6</clickhouse-jdbc.version>
 
         <!-- scope-->
         <dependency.scope>compile</dependency.scope>
@@ -128,6 +129,14 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson-databind.version}</version>
             <scope>${dependency.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.clickhouse</groupId>
+            <artifactId>clickhouse-jdbc</artifactId>
+            <version>${clickhouse-jdbc.version}</version>
+            <scope>${dependency.scope}</scope>
+            <classifier>all</classifier>
         </dependency>
 
 
