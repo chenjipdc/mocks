@@ -9,14 +9,11 @@ import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.DateUtils;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
-public class DateMockPlugin extends AbstractMockPlugin<Object> {
-
-    private DateMockConfig dateConfig;
+public class DateMockPlugin extends AbstractMockPlugin<Object, DateMockConfig> {
 
     @Override
     public String type() {
@@ -26,7 +23,7 @@ public class DateMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        dateConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 DateMockConfig.class);
     }
 
@@ -34,11 +31,11 @@ public class DateMockPlugin extends AbstractMockPlugin<Object> {
     public Map<String, Object> value() {
         Map<String, Object> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
-            if (dateConfig != null) {
-                String timeZoneId = dateConfig.getTimeZoneId();
-                String format = dateConfig.getFormat();
-                Date start = dateConfig.getStart();
-                Date end = dateConfig.getEnd();
+            if (mockConfig != null) {
+                String timeZoneId = mockConfig.getTimeZoneId();
+                String format = mockConfig.getFormat();
+                Date start = mockConfig.getStart();
+                Date end = mockConfig.getEnd();
                 if (start != null && end != null) {
                     map.put(column,
                             DateUtils.randomStringRangeDate(start.getTime(),

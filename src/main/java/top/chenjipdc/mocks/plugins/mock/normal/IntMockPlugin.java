@@ -8,15 +8,12 @@ import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @AutoService(MockPlugin.class)
-public class IntMockPlugin extends AbstractMockPlugin<Integer> {
-
-    private IntMockConfig intConfig;
+public class IntMockPlugin extends AbstractMockPlugin<Integer, IntMockConfig> {
 
     private AtomicInteger value = new AtomicInteger(1);
 
@@ -28,7 +25,7 @@ public class IntMockPlugin extends AbstractMockPlugin<Integer> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        intConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 IntMockConfig.class);
 
         checkAndInit();
@@ -38,9 +35,9 @@ public class IntMockPlugin extends AbstractMockPlugin<Integer> {
     public Map<String, Integer> value() {
         Map<String, Integer> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
-            if (intConfig != null) {
+            if (mockConfig != null) {
                 // 自增
-                if (intConfig.getAutoincrement()) {
+                if (mockConfig.getAutoincrement()) {
                     int value = this.value.getAndIncrement();
                     if (value == Integer.MAX_VALUE) {
                         throw new RuntimeException("自增已超出int数据范围, 请调整生成的数据总量");
@@ -50,8 +47,8 @@ public class IntMockPlugin extends AbstractMockPlugin<Integer> {
                     break;
                 }
 
-                Integer start = intConfig.getStart();
-                Integer end = intConfig.getEnd();
+                Integer start = mockConfig.getStart();
+                Integer end = mockConfig.getEnd();
                 if (start != null && end != null) {
                     map.put(column,
                             NumericUtils.nextInt(start,
@@ -78,9 +75,9 @@ public class IntMockPlugin extends AbstractMockPlugin<Integer> {
     }
 
     private void checkAndInit() {
-        if (intConfig.getAutoincrement()) {
-            if (intConfig.getStart() != null) {
-                value = new AtomicInteger(intConfig.getStart());
+        if (mockConfig.getAutoincrement()) {
+            if (mockConfig.getStart() != null) {
+                value = new AtomicInteger(mockConfig.getStart());
             }
         }
     }

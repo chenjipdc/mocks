@@ -3,16 +3,16 @@ package top.chenjipdc.mocks.plugins.mock;
 import lombok.Getter;
 import lombok.Setter;
 import top.chenjipdc.mocks.config.Config;
+import top.chenjipdc.mocks.config.mock.MockConfig;
 import top.chenjipdc.mocks.plugins.MockPlugin;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @Getter
 @Setter
-public abstract class AbstractMockPlugin<T> implements MockPlugin<T> {
+public abstract class AbstractMockPlugin<V, C extends MockConfig> implements MockPlugin<V> {
 
     /**
      * 字段名称
@@ -28,6 +28,8 @@ public abstract class AbstractMockPlugin<T> implements MockPlugin<T> {
      * config
      */
     protected Config.MocksConfig config;
+
+    protected C mockConfig;
 
     @Override
     public void init(Config.MocksConfig config) {

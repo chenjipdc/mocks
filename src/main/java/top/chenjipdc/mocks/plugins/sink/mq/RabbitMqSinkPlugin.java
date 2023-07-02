@@ -15,9 +15,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @AutoService(SinkPlugin.class)
-public class RabbitMqSinkPlugin extends AbstractSinkPlugin {
-
-    private RabbitMqSinkConfig sinkConfig;
+public class RabbitMqSinkPlugin extends AbstractSinkPlugin<RabbitMqSinkConfig> {
 
     private Connection connection;
 

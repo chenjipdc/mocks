@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @AutoService(SinkPlugin.class)
-public class MongoSinkPlugin extends AbstractSinkPlugin {
+public class MongoSinkPlugin extends AbstractSinkPlugin<MongoSinkConfig> {
 
     private MongoClient mongoClient;
 

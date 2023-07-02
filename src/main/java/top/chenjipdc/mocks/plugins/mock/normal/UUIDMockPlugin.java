@@ -7,15 +7,12 @@ import top.chenjipdc.mocks.config.mock.normal.UUIDMockConfig;
 import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
 @AutoService(MockPlugin.class)
-public class UUIDMockPlugin extends AbstractMockPlugin<String> {
-
-    private UUIDMockConfig mockConfig;
+public class UUIDMockPlugin extends AbstractMockPlugin<String, UUIDMockConfig> {
 
     @Override
     public String type() {

@@ -8,15 +8,11 @@ import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.id.Sequence;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @AutoService(MockPlugin.class)
-public class SnowflakeMockPlugin extends AbstractMockPlugin<Long> {
-
-    private SnowflakeMockConfig mockConfig;
+public class SnowflakeMockPlugin extends AbstractMockPlugin<Long, SnowflakeMockConfig> {
 
     private Sequence sequence;
 

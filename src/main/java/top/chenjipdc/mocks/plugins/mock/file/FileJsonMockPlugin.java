@@ -14,7 +14,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class FileJsonMockPlugin extends AbstractMockPlugin<Object> {
+public class FileJsonMockPlugin extends AbstractMockPlugin<Object, FileJsonMockConfig> {
 
     private final List<Map<String, Object>> values = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class FileJsonMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        FileJsonMockConfig mockConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 FileJsonMockConfig.class);
 
         File file = new File(mockConfig.getPath());

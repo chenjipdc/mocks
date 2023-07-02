@@ -1,6 +1,5 @@
 package top.chenjipdc.mocks.plugins.mock.file;
 
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import lombok.SneakyThrows;
@@ -14,7 +13,7 @@ import java.io.File;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object> {
+public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object, FileDelimiterMockConfig> {
 
     private final List<Map<String, Object>> values = new ArrayList<>();
 
@@ -27,7 +26,7 @@ public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        FileDelimiterMockConfig mockConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 FileDelimiterMockConfig.class);
 
         File file = new File(mockConfig.getPath());

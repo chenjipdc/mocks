@@ -8,16 +8,12 @@ import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @AutoService(MockPlugin.class)
-public class LongMockPlugin extends AbstractMockPlugin<Long> {
-
-
-    private LongMockConfig longConfig;
+public class LongMockPlugin extends AbstractMockPlugin<Long, LongMockConfig> {
 
     private AtomicLong value = new AtomicLong(1);
 
@@ -29,7 +25,7 @@ public class LongMockPlugin extends AbstractMockPlugin<Long> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        longConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 LongMockConfig.class);
 
         checkAndInit();
@@ -39,9 +35,9 @@ public class LongMockPlugin extends AbstractMockPlugin<Long> {
     public Map<String, Long> value() {
         Map<String, Long> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
-            if (longConfig != null) {
+            if (mockConfig != null) {
                 // 自增
-                if (longConfig.getAutoincrement()) {
+                if (mockConfig.getAutoincrement()) {
                     long value = this.value.getAndIncrement();
                     if (value == Long.MAX_VALUE) {
                         throw new RuntimeException("自增已超出long数据范围, 请调整生成的数据总量");
@@ -51,8 +47,8 @@ public class LongMockPlugin extends AbstractMockPlugin<Long> {
                     break;
                 }
 
-                Long start = longConfig.getStart();
-                Long end = longConfig.getEnd();
+                Long start = mockConfig.getStart();
+                Long end = mockConfig.getEnd();
                 if (start != null && end != null) {
                     map.put(column,
                             NumericUtils.nextLong(start,
@@ -79,9 +75,9 @@ public class LongMockPlugin extends AbstractMockPlugin<Long> {
     }
 
     private void checkAndInit() {
-        if (longConfig.getAutoincrement()) {
-            if (longConfig.getStart() != null) {
-                value = new AtomicLong(longConfig.getStart());
+        if (mockConfig.getAutoincrement()) {
+            if (mockConfig.getStart() != null) {
+                value = new AtomicLong(mockConfig.getStart());
             }
         }
     }

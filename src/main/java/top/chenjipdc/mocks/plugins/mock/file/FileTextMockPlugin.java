@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class FileTextMockPlugin extends AbstractMockPlugin<Object> {
+public class FileTextMockPlugin extends AbstractMockPlugin<Object, FileTextMockConfig> {
 
     private final List<Object> values = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class FileTextMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        FileTextMockConfig mockConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 FileTextMockConfig.class);
 
         byte[] allBytes = Files.readAllBytes(Paths.get(mockConfig.getPath()));

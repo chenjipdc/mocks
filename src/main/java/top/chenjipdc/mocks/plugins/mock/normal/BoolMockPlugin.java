@@ -2,16 +2,16 @@ package top.chenjipdc.mocks.plugins.mock.normal;
 
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.config.Config;
+import top.chenjipdc.mocks.config.mock.MockConfig;
 import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
-public class BoolMockPlugin extends AbstractMockPlugin<Boolean> {
+public class BoolMockPlugin extends AbstractMockPlugin<Boolean, MockConfig> {
 
 
     @Override

@@ -36,6 +36,7 @@
         <elasticsearch-java.version>7.17.10</elasticsearch-java.version>
         <jackson-databind.version>2.12.3</jackson-databind.version>
         <clickhouse-jdbc.version>0.4.6</clickhouse-jdbc.version>
+        <postgresql.version>42.6.0</postgresql.version>
 
         <!-- scope-->
         <dependency.scope>compile</dependency.scope>
@@ -138,6 +139,14 @@
             <scope>${dependency.scope}</scope>
             <classifier>all</classifier>
         </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
+
 
 
         <dependency>

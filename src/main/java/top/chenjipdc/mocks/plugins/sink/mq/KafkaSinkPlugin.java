@@ -13,9 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 
 @AutoService(SinkPlugin.class)
-public class KafkaSinkPlugin extends AbstractSinkPlugin {
-
-    private KafkaSinkConfig sinkConfig;
+public class KafkaSinkPlugin extends AbstractSinkPlugin<KafkaSinkConfig> {
 
     private KafkaProducer<String, String> producer;
 

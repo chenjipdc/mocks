@@ -2,17 +2,22 @@ package top.chenjipdc.mocks.plugins.sink;
 
 import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
+import top.chenjipdc.mocks.config.sink.SinkConfig;
 import top.chenjipdc.mocks.plugins.SinkPlugin;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
+import java.util.stream.Collectors;
 
 
 @Slf4j
-public abstract class AbstractSinkPlugin implements SinkPlugin {
+public abstract class AbstractSinkPlugin<T extends SinkConfig> implements SinkPlugin {
 
     protected Config.SinksConfig config;
+
+    protected T sinkConfig;
 
     private long start = System.currentTimeMillis();
 
@@ -39,7 +44,6 @@ public abstract class AbstractSinkPlugin implements SinkPlugin {
             return values;
         }
     }
-
 
     public void stop() {
         stopTiming();

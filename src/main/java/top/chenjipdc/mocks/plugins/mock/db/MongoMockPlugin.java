@@ -16,9 +16,7 @@ import java.math.BigInteger;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class MongoMockPlugin extends AbstractMockPlugin<Object> {
-
-    private MongoMockConfig mongoConfig;
+public class MongoMockPlugin extends AbstractMockPlugin<Object, MongoMockConfig> {
 
     private final List<Map<String, Object>> values = new ArrayList<>();
 
@@ -31,32 +29,32 @@ public class MongoMockPlugin extends AbstractMockPlugin<Object> {
     public void init(Config.MocksConfig config) {
         super.init(config);
 
-        mongoConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 MongoMockConfig.class);
         String uri = "mongodb://";
-        if (mongoConfig.getUsername() != null && mongoConfig.getPassword() != null) {
-            uri += mongoConfig.getUsername() + ":" + mongoConfig.getPassword() + "@";
+        if (mockConfig.getUsername() != null && mockConfig.getPassword() != null) {
+            uri += mockConfig.getUsername() + ":" + mockConfig.getPassword() + "@";
         }
-        uri += mongoConfig.getAddress();
-        if (mongoConfig.getConnectParams() != null) {
-            uri += "?" + mongoConfig.getConnectParams();
+        uri += mockConfig.getAddress();
+        if (mockConfig.getConnectParams() != null) {
+            uri += "?" + mockConfig.getConnectParams();
         }
         try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase(mongoConfig.getDatabase());
-            MongoCollection<Document> collection = database.getCollection(mongoConfig.getCollection());
+            MongoDatabase database = mongoClient.getDatabase(mockConfig.getDatabase());
+            MongoCollection<Document> collection = database.getCollection(mockConfig.getCollection());
             FindIterable<Document> query;
-            if (mongoConfig.getFindJson() != null) {
-                Document find = Document.parse(mongoConfig.getFindJson());
+            if (mockConfig.getFindJson() != null) {
+                Document find = Document.parse(mockConfig.getFindJson());
                 query = collection.find(find);
             } else {
                 query = collection.find();
             }
             query.projection(Projections.include(columns));
-            if (mongoConfig.getBatch() != null) {
-                query.batchSize(mongoConfig.getBatch());
+            if (mockConfig.getBatch() != null) {
+                query.batchSize(mockConfig.getBatch());
             }
-            if (mongoConfig.getLimit() != null) {
-                query.limit(mongoConfig.getLimit());
+            if (mockConfig.getLimit() != null) {
+                query.limit(mockConfig.getLimit());
             }
             try (MongoCursor<Document> cursor = query
                     .cursor()) {

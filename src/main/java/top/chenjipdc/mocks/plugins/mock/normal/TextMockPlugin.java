@@ -11,7 +11,7 @@ import top.chenjipdc.mocks.utils.NumericUtils;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class TextMockPlugin extends AbstractMockPlugin<Object> {
+public class TextMockPlugin extends AbstractMockPlugin<Object, TextMockConfig> {
 
     private final List<Object> values = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class TextMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        TextMockConfig mockConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 TextMockConfig.class);
         values.addAll(Arrays.asList(mockConfig.getText()
                 .split(mockConfig.getSplit())));

@@ -13,11 +13,9 @@ import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 import java.util.Map;
 
 @AutoService(SinkPlugin.class)
-public class RocketMqSinkPlugin extends AbstractSinkPlugin {
+public class RocketMqSinkPlugin extends AbstractSinkPlugin<RocketMqSinkConfig> {
 
-    private RocketMqSinkConfig sinkConfig;
-
-    DefaultMQProducer producer;
+    private DefaultMQProducer producer;
 
     @Override
     public String type() {

@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @AutoService(SinkPlugin.class)
-public class ElasticsearchSinkPlugin extends AbstractSinkPlugin {
+public class ElasticsearchSinkPlugin extends AbstractSinkPlugin<ElasticsearchSinkConfig> {
 
     private ElasticsearchSinkConfig sinkConfig;
 

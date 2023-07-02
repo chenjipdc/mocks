@@ -8,14 +8,11 @@ import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @AutoService(MockPlugin.class)
-public class FloatMockPlugin extends AbstractMockPlugin<Float> {
-
-    private FloatMockConfig floatConfig;
+public class FloatMockPlugin extends AbstractMockPlugin<Float, FloatMockConfig> {
 
     @Override
     public String type() {
@@ -25,7 +22,7 @@ public class FloatMockPlugin extends AbstractMockPlugin<Float> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        floatConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 FloatMockConfig.class);
     }
 
@@ -33,9 +30,9 @@ public class FloatMockPlugin extends AbstractMockPlugin<Float> {
     public Map<String, Float> value() {
         Map<String, Float> map = new LinkedHashMap<>();
         for (String column : aliases.values()) {
-            if (floatConfig != null) {
-                Float start = floatConfig.getStart();
-                Float end = floatConfig.getEnd();
+            if (mockConfig != null) {
+                Float start = mockConfig.getStart();
+                Float end = mockConfig.getEnd();
                 if (start != null && end != null) {
                     map.put(column,
                             NumericUtils.nextFloat(start,

@@ -17,9 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @AutoService(SinkPlugin.class)
-public class FileDelimiterSinkPlugin extends AbstractSinkPlugin {
-
-    private FileDelimiterSinkConfig sinkConfig;
+public class FileDelimiterSinkPlugin extends AbstractSinkPlugin<FileDelimiterSinkConfig> {
 
     private List<Map<String, Object>> cacheValues = new ArrayList<>();
 

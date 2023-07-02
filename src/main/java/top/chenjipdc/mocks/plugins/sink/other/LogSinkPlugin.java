@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Slf4j
 @AutoService(SinkPlugin.class)
-public class LogSinkPlugin extends AbstractSinkPlugin {
+public class LogSinkPlugin extends AbstractSinkPlugin<LogSinkConfig> {
 
     private LogSinkConfig logConfig;
 

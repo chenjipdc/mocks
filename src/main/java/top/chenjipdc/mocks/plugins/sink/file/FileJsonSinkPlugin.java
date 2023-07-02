@@ -12,9 +12,7 @@ import java.io.*;
 import java.util.*;
 
 @AutoService(SinkPlugin.class)
-public class FileJsonSinkPlugin extends AbstractSinkPlugin {
-
-    private FileJsonSinkConfig jsonSinkConfig;
+public class FileJsonSinkPlugin extends AbstractSinkPlugin<FileJsonSinkConfig> {
 
     private List<Map<String, Object>> cacheValues = new ArrayList<>();
 
@@ -30,29 +28,29 @@ public class FileJsonSinkPlugin extends AbstractSinkPlugin {
     public void init(Config.SinksConfig config) {
         super.init(config);
 
-        jsonSinkConfig = JSONObject.parseObject(config.getConfig(),
+        sinkConfig = JSONObject.parseObject(config.getConfig(),
                 FileJsonSinkConfig.class);
 
-        File file = new File(jsonSinkConfig.getPath());
+        File file = new File(sinkConfig.getPath());
 
         // 创建文件
-        if (!file.exists() && jsonSinkConfig.getAutoCreated()) {
+        if (!file.exists() && sinkConfig.getAutoCreated()) {
             boolean created = file.createNewFile();
             if (!created) {
-                throw new RuntimeException("创建文件失败：" + jsonSinkConfig.getPath());
+                throw new RuntimeException("创建文件失败：" + sinkConfig.getPath());
             }
         }
 
         // 获取文件写入
         writer = new FileWriter(file,
-                jsonSinkConfig.getAppend());
+                sinkConfig.getAppend());
     }
 
     @SneakyThrows
     @Override
     public void sink(Map<String, Object> values) {
-        if (jsonSinkConfig.getBatch() != null && jsonSinkConfig.getBatch() > 1) {
-            if (cacheValues.size() >= jsonSinkConfig.getBatch()) {
+        if (sinkConfig.getBatch() != null && sinkConfig.getBatch() > 1) {
+            if (cacheValues.size() >= sinkConfig.getBatch()) {
                 batchFlush();
             } else {
                 cacheValues.add(mappingsConvert(values));

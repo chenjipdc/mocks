@@ -16,9 +16,7 @@ import java.sql.Statement;
 import java.util.*;
 
 @AutoService(MockPlugin.class)
-public class MysqlMockPlugin extends AbstractMockPlugin<Object> {
-
-    private MysqlMockConfig mysqlConfig;
+public class MysqlMockPlugin extends AbstractMockPlugin<Object, MysqlMockConfig> {
 
     private final List<Map<String, Object>> values = new ArrayList<>();
 
@@ -30,19 +28,19 @@ public class MysqlMockPlugin extends AbstractMockPlugin<Object> {
     @Override
     public void init(Config.MocksConfig config) {
         super.init(config);
-        mysqlConfig = JSONObject.parseObject(config.getConfig(),
+        mockConfig = JSONObject.parseObject(config.getConfig(),
                 MysqlMockConfig.class);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    mysqlConfig.getJdbcUrl(),
-                    mysqlConfig.getUsername(),
-                    mysqlConfig.getPassword());
+                    mockConfig.getJdbcUrl(),
+                    mockConfig.getUsername(),
+                    mockConfig.getPassword());
             Statement stmt = con.createStatement();
             String sql = "select " + String.join(",",
-                    columns) + " from " + mysqlConfig.getTable();
-            if (mysqlConfig.getLastSql() != null) {
-                sql += " " + mysqlConfig.getLastSql();
+                    columns) + " from " + mockConfig.getTable();
+            if (mockConfig.getLastSql() != null) {
+                sql += " " + mockConfig.getLastSql();
             }
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
