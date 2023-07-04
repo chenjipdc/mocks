@@ -6,6 +6,7 @@ import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.mock.MockConfig;
 import top.chenjipdc.mocks.plugins.MockPlugin;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ public abstract class AbstractMockPlugin<V, C extends MockConfig> implements Moc
     protected Config.MocksConfig config;
 
     protected C mockConfig;
+
+    protected final List<Map<String, V>> values = new ArrayList<>();
 
     @Override
     public void init(Config.MocksConfig config) {

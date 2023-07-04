@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.SinkConfig;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
+import top.chenjipdc.mocks.utils.StringUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,11 +99,11 @@ public abstract class JdbcSinkPlugin<T extends SinkConfig> extends AbstractSinkP
      * @return insert into "table" ("id", "name") values (?, ?)
      */
     public String prepareSql(String tableName, boolean doubleQuote) {
-        String insert = "insert into " + (doubleQuote ? doubleQuote(tableName) : tableName) + " (";
+        String insert = "insert into " + (doubleQuote ? StringUtils.doubleQuote(tableName) : tableName) + " (";
         insert += config.getMappings()
                 .keySet()
                 .stream()
-                .map(it -> doubleQuote ? doubleQuote(it) : it)
+                .map(it -> doubleQuote ? StringUtils.doubleQuote(it) : it)
                 .collect(Collectors.joining((CharSequence) ",")) + ") values (";
 
         insert += config.getMappings()
@@ -118,11 +119,4 @@ public abstract class JdbcSinkPlugin<T extends SinkConfig> extends AbstractSinkP
         return value;
     }
 
-    public String doubleQuote(String str) {
-        return "\"" + str + "\"";
-    }
-
-    public String quote(String str) {
-        return "'" + str + "'";
-    }
 }
