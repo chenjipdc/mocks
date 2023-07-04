@@ -9,7 +9,6 @@ import top.chenjipdc.mocks.plugins.SinkPlugin;
 import top.chenjipdc.mocks.pools.PoolsService;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class Runner {
@@ -29,6 +28,9 @@ public class Runner {
             mockService.init();
 
             for (Config.SinksConfig sink : config.getSinks()) {
+                if (sink.getType().equals("ignore")) {
+                    continue;
+                }
                 int loop = 1;
                 // 相同配置循环多少次sink, 目的是为了多线程加速写入
                 if (sink.getLoop() != null && sink.getLoop() > 1) {
