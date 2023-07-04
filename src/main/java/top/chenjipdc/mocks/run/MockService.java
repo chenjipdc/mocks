@@ -33,6 +33,11 @@ public class MockService implements LifeCycle {
         ServiceLoader<MockPlugin> loader = ServiceLoader.load(MockPlugin.class);
         loader.forEach(mockPlugin -> {
             if (mockPlugin.type()
+                    .equals("ignore")) {
+                return;
+            }
+
+            if (mockPlugin.type()
                     .equals(config.getType())) {
                 for (String column : getColumns(config)) {
                     allColumn.add(column);
@@ -60,6 +65,8 @@ public class MockService implements LifeCycle {
     private void check() {
         mocksConfig
                 .stream()
+                .filter(it -> !it.getType()
+                        .equals("ignore"))
                 .map(this::getColumns)
                 .flatMap(Collection::stream)
                 .collect(Collectors.groupingBy(it -> it))
