@@ -91,7 +91,21 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
           "name": "name",
           "age": "age",
           "created_date": "date"
-        }
+        },
+        "converters": [
+          {
+            "column": "age",
+            "type": "int-to-string"
+          },
+          {
+            "column": "created_date",
+            "type": "date-to-string"
+          },
+          {
+            "column": "created_date",
+            "type": "quote-string"
+          }]
+      }
       },
       {
         "type": "mysql",
@@ -161,6 +175,7 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 #### 其他
 - name
 - thread
+- ignore
 
 
 ### sink插件
@@ -184,6 +199,16 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 - log
 - ignore
 
+#### 字段转换器(converter)插件
+- bigint-to-long
+- date-to-string
+- double-quote-string
+- quote-string
+- int-to-string
+- long-to-string
+- string-to-int
+- string-to-long
+
 ## 开发插件
 ### mock插件
 继承类`AbstractMockPlugin`实现以下方法即可：
@@ -198,3 +223,9 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 - void init(config): 建立连接等可以在这里实现
 - void sink(Map<String, Object> values): 从各种mock组合而成的数据
 - void close()： 关闭连接等可以在这里实现
+
+### converter插件
+实现接口`ConverterPlugin`：
+- String type(): 插件类型
+- void init(config): 插件配置初始化
+  R convert(T value)：转换

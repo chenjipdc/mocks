@@ -98,10 +98,35 @@ public class Config {
         private Map<String, String> mappings;
 
         /**
+         * 字段转换器
+         */
+        private List<Converter> converters;
+
+        /**
          * 配置
          */
         private String config = "{}";
 
+    }
+
+    @Getter
+    @Setter
+    public static class Converter {
+
+        /**
+         * 需要转换的字段
+         */
+        private String column;
+
+        /**
+         * 转换器类型
+         */
+        private String type;
+
+        /**
+         * 转换器配置
+         */
+        private String config = "{}";
     }
 
 }
