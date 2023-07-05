@@ -9,10 +9,10 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 
 架构很简单：
 
-1. SPI实现各种数据源mock插件，抽取需要的字段数据
-2. 将各种数据源抽取的字段数据组成一个池子
-3. 将池子里的数据进行随机流出，通过线程池异步流向各种sink
-4. 各种sink插件也由SPI实现插件化
+1. SPI实现各种数据源mock插件，抽取/生成需要的字段数据
+2. 将各种数据源抽取的字段数据组成一个池子(map)
+3. 将池子里的数据进行随机流出，通过线程池异步流向各种sink（SPI插件）
+4. sink过程通过converter（SPI插件）自定义转换字段值
 
 ## 运行
 
@@ -198,15 +198,22 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 - log
 - ignore
 
-#### 字段转换器(converter)插件
+### 字段转换器(converter)插件
 - bigint-to-long
 - date-to-string
 - double-quote-string
 - quote-string
-- int-to-string
-- long-to-string
+- to-string
 - string-to-int
 - string-to-long
+- string-to-short
+- string-to-bool
+- string-to-float
+- string-to-double
+- string-to-decimal
+- string-to-date
+- string-replace
+- string-insert
 
 ## 开发插件
 ### mock插件
