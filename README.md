@@ -105,7 +105,6 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
             "column": "created_date",
             "type": "quote-string"
           }]
-      }
       },
       {
         "type": "mysql",
@@ -228,4 +227,4 @@ mocks是一个模拟数据工具，通过简单的json文件配置，从各种�
 实现接口`ConverterPlugin`：
 - String type(): 插件类型
 - void init(config): 插件配置初始化
-  R convert(T value)：转换
+- R convert(T value)：转换
