@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins.converter;
+package top.chenjipdc.mocks.plugins.converter.normal;
 
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.plugins.ConverterPlugin;
@@ -13,6 +13,9 @@ public class QuoteStringConverterPlugin implements ConverterPlugin<String, Strin
 
     @Override
     public String convert(String value) {
+        if (value == null) {
+            return null;
+        }
         return StringUtils.quote(value);
     }
 }

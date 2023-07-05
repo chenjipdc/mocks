@@ -1,17 +1,20 @@
-package top.chenjipdc.mocks.plugins.converter;
+package top.chenjipdc.mocks.plugins.converter.normal;
 
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.plugins.ConverterPlugin;
 
 @AutoService(ConverterPlugin.class)
-public class LongToStringConverterPlugin implements ConverterPlugin<Long, String> {
+public class ToStringConverterPlugin implements ConverterPlugin<Long, String> {
     @Override
     public String type() {
-        return "long-to-string";
+        return "to-string";
     }
 
     @Override
     public String convert(Long value) {
+        if (value == null) {
+            return null;
+        }
         return value.toString();
     }
 }

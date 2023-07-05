@@ -21,4 +21,8 @@ public interface ConverterPlugin<T, R> {
      */
     R convert(T value);
 
+    default void stop(){
+
+    }
+
 }

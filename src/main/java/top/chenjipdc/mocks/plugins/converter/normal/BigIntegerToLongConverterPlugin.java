@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins.converter;
+package top.chenjipdc.mocks.plugins.converter.normal;
 
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.plugins.ConverterPlugin;
@@ -14,6 +14,9 @@ public class BigIntegerToLongConverterPlugin implements ConverterPlugin<BigInteg
 
     @Override
     public Long convert(BigInteger value) {
+        if (value == null) {
+            return null;
+        }
         return value.longValue();
     }
 }

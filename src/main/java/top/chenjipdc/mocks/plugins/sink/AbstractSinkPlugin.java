@@ -82,6 +82,8 @@ public abstract class AbstractSinkPlugin<T extends SinkConfig> implements SinkPl
 
     public void stop() {
         stopTiming();
+
+        converters.values().forEach(ConverterPlugin::stop);
     }
 
     public void startTiming() {

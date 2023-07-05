@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins.converter;
+package top.chenjipdc.mocks.plugins.converter.normal;
 
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.plugins.ConverterPlugin;
@@ -12,6 +12,9 @@ public class StringToLongConverterPlugin implements ConverterPlugin<String, Long
 
     @Override
     public Long convert(String value) {
+        if (value == null) {
+            return null;
+        }
         return Long.parseLong(value);
     }
 }

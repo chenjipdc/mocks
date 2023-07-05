@@ -244,7 +244,7 @@ public class DateUtils {
                 DEFAULT_TIMEZONE_ID);
     }
 
-    private static SimpleDateFormat dateFormat(String format, String timeZoneId) {
+    public static SimpleDateFormat dateFormat(String format, String timeZoneId) {
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone(timeZoneId));
         return simpleDateFormat;
