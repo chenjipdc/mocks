@@ -1,5 +1,6 @@
 package top.chenjipdc.mocks.plugins.sink;
 
+import com.google.common.collect.ArrayListMultimap;
 import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.SinkConfig;
@@ -20,7 +21,7 @@ public abstract class AbstractSinkPlugin<T extends SinkConfig> implements SinkPl
     /**
      * 映射字段转换器
      */
-    protected Map<String, ConverterPlugin<Object, Object>> converters = new IdentityHashMap<>();
+    protected ArrayListMultimap<String, ConverterPlugin<Object, Object>> converters = ArrayListMultimap.create();
 
     private long start = System.currentTimeMillis();
 
@@ -70,7 +71,7 @@ public abstract class AbstractSinkPlugin<T extends SinkConfig> implements SinkPl
         }
 
         // 转换值
-        if (converters != null) {
+        if (converters != null && converters.size() > 0) {
             converters.forEach((column, converter) -> {
                 if (map.containsKey(column)) {
                     map.put(column, converter.convert(map.get(column)));
