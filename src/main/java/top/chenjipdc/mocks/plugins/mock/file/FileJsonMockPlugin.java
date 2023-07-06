@@ -16,8 +16,6 @@ import java.util.*;
 @AutoService(MockPlugin.class)
 public class FileJsonMockPlugin extends AbstractMockPlugin<Object, FileJsonMockConfig> {
 
-    private final List<Map<String, Object>> values = new ArrayList<>();
-
     @Override
     public String type() {
         return "file-json";
@@ -50,17 +48,12 @@ public class FileJsonMockPlugin extends AbstractMockPlugin<Object, FileJsonMockC
                 map.put(aliases.get(column),
                         object);
             }
-            values.add(map);
+            cachePlugin.cache(map);
 
-            if (mockConfig.getLimit() != null && values.size() > mockConfig.getLimit()) {
+            if (mockConfig.getLimit() != null && cachePlugin.size() > mockConfig.getLimit()) {
                 break;
             }
         }
         scanner.close();
-    }
-
-    @Override
-    public Map<String, Object> value() {
-        return values.get(NumericUtils.nextInt(values.size()));
     }
 }

@@ -63,6 +63,11 @@ public class Config {
         private Map<String, String> aliases;
 
         /**
+         * 数据缓存配置，默认memory缓存
+         */
+        private CacheConfig caching;
+
+        /**
          * datasource 配置
          */
         private String config = "{}";
@@ -100,7 +105,7 @@ public class Config {
         /**
          * 字段转换器
          */
-        private List<Converter> converters;
+        private List<ConverterConfig> converters;
 
         /**
          * 配置
@@ -111,7 +116,7 @@ public class Config {
 
     @Getter
     @Setter
-    public static class Converter {
+    public static class ConverterConfig {
 
         /**
          * 需要转换的字段
@@ -127,6 +132,22 @@ public class Config {
          * 转换器配置
          */
         private String config = "{}";
+    }
+
+    @Getter
+    @Setter
+    public static class CacheConfig {
+
+        /**
+         * 缓存类型
+         */
+        private String type;
+
+        /**
+         * 缓存配置: json
+         */
+        private String config = "{}";
+
     }
 
 }

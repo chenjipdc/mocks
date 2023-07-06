@@ -39,11 +39,12 @@ public class MockService implements LifeCycle {
 
             if (mockPlugin.type()
                     .equals(config.getType())) {
-                for (String column : getColumns(config)) {
-                    allColumn.add(column);
-                    dsPluginMap.put(column,
-                            mockPlugin);
-                }
+
+                Collection<String> columns = getColumns(config);
+                String key = String.join(",", columns);
+                allColumn.add(key);
+                dsPluginMap.put(key,
+                        mockPlugin);
                 mockPlugin.init(config);
             }
         });
@@ -51,8 +52,13 @@ public class MockService implements LifeCycle {
 
     public Map<String, Object> get() {
         Map<String, Object> map = new LinkedHashMap<>();
-        allColumn.forEach(column -> map.putAll(dsPluginMap.get(column)
-                .value()));
+        allColumn.forEach(column -> {
+            Map<String, Object> value = dsPluginMap.get(column)
+                    .value();
+            if (value != null) {
+                map.putAll(value);
+            }
+        });
         return map;
     }
 

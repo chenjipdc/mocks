@@ -5,11 +5,9 @@ import lombok.Setter;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.mock.MockConfig;
 import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.cache.CachePlugin;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
@@ -30,9 +28,16 @@ public abstract class AbstractMockPlugin<V, C extends MockConfig> implements Moc
      */
     protected Config.MocksConfig config;
 
+    /**
+     * mock配置
+     */
     protected C mockConfig;
 
-    protected final List<Map<String, V>> values = new ArrayList<>();
+    /**
+     * 缓存插件
+     */
+    protected CachePlugin<V> cachePlugin;
+
 
     @Override
     public void init(Config.MocksConfig config) {
@@ -48,6 +53,42 @@ public abstract class AbstractMockPlugin<V, C extends MockConfig> implements Moc
                 aliases.put(column,
                         column);
             }
+        }
+
+        initCaching();
+    }
+
+    private void initCaching() {
+        Config.CacheConfig cacheConfig = config.getCaching();
+        ServiceLoader<CachePlugin> cachePlugins = ServiceLoader.load(CachePlugin.class);
+        for (CachePlugin plugin : cachePlugins) {
+            if (cacheConfig != null) {
+                if (plugin.type()
+                        .equals(cacheConfig.getType())) {
+                    cachePlugin = plugin;
+
+                    plugin.init(cacheConfig.getConfig());
+                    break;
+                }
+            } else {
+                if (plugin.type()
+                        .equals("memory")) {
+                    cachePlugin = plugin;
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public Map<String, V> value() {
+        return cachePlugin.get(mockConfig.getRandom());
+    }
+
+    @Override
+    public void stop() {
+        if (cachePlugin != null) {
+            cachePlugin.stop();
         }
     }
 }

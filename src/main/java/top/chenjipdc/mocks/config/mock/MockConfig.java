@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class MockConfig {
     /**
-     * 是否唯一, 这个会额外耗时
+     * 是否随机
      */
-    private Boolean unique = false;
+    private Boolean random = Boolean.FALSE;
 
 }

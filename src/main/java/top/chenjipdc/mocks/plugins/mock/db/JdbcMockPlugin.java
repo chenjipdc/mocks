@@ -61,7 +61,7 @@ public abstract class JdbcMockPlugin<C extends JdbcMockConfig> extends AbstractM
                         map.put(aliases.get(column),
                                 object);
                     }
-                    values.add(map);
+                    cachePlugin.cache(map);
                 }
             }
         }
@@ -90,11 +90,6 @@ public abstract class JdbcMockPlugin<C extends JdbcMockConfig> extends AbstractM
 
     public String columnMap(String column) {
         return column;
-    }
-
-    @Override
-    public Map<String, Object> value() {
-        return values.get(NumericUtils.nextInt(values.size()));
     }
 
     @Override

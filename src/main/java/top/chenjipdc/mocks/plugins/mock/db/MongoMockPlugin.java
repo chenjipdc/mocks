@@ -18,8 +18,6 @@ import java.util.*;
 @AutoService(MockPlugin.class)
 public class MongoMockPlugin extends AbstractMockPlugin<Object, MongoMockConfig> {
 
-    private final List<Map<String, Object>> values = new ArrayList<>();
-
     @Override
     public String type() {
         return "mongo";
@@ -69,15 +67,10 @@ public class MongoMockPlugin extends AbstractMockPlugin<Object, MongoMockConfig>
                         map.put(aliases.get(column),
                                 object);
                     }
-                    values.add(map);
+                    cachePlugin.cache(map);
                 }
             }
 
         }
-    }
-
-    @Override
-    public Map<String, Object> value() {
-        return values.get(NumericUtils.nextInt(values.size()));
     }
 }

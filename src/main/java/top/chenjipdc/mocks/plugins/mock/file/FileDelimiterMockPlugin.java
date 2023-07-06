@@ -15,8 +15,6 @@ import java.util.*;
 @AutoService(MockPlugin.class)
 public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object, FileDelimiterMockConfig> {
 
-    private final List<Map<String, Object>> values = new ArrayList<>();
-
     @Override
     public String type() {
         return "file-delimiter";
@@ -46,17 +44,13 @@ public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object, FileDeli
                 map.put(aliases.get(columns.get(i)),
                         object);
             }
-            values.add(JSONObject.parseObject(JSONObject.toJSONString(map), LinkedHashMap.class));
+            cachePlugin.cache(JSONObject.parseObject(JSONObject.toJSONString(map),
+                    LinkedHashMap.class));
 
-            if (mockConfig.getLimit() != null && values.size() > mockConfig.getLimit()) {
+            if (mockConfig.getLimit() != null && cachePlugin.size() > mockConfig.getLimit()) {
                 break;
             }
         }
         scanner.close();
-    }
-
-    @Override
-    public Map<String, Object> value() {
-        return values.get(NumericUtils.nextInt(values.size()));
     }
 }
