@@ -23,10 +23,7 @@ public class PostgreSQLMockPlugin extends JdbcMockPlugin<PostgreSQLMockConfig> {
     }
 
     public void initProperties(Properties props) {
-        props.setProperty("user",
-                mockConfig.getUsername());
-        props.setProperty("password",
-                mockConfig.getPassword());
+        super.initProperties(props);
         props.setProperty("stringtype",
                 "unspecified");
     }

@@ -29,12 +29,18 @@ public abstract class JdbcMockPlugin<C extends JdbcMockConfig> extends AbstractM
 
     public abstract void initConfig(String config);
 
-    public abstract void initProperties(Properties props);
+    public void initProperties(Properties props){
+        props.setProperty("user",
+                mockConfig.getUsername());
+        props.setProperty("password",
+                mockConfig.getPassword());
+    }
 
     @SneakyThrows
     private void init() {
         Class.forName(mockConfig.getDriverClass());
         Properties props = new Properties();
+
         initProperties(props);
         try (Connection connection = DriverManager.getConnection(
                 mockConfig.getJdbcUrl(),

@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MysqlSinkConfig extends JdbcSinkConfig {
+public class ClickhouseSinkConfig extends JdbcSinkConfig {
 
 }

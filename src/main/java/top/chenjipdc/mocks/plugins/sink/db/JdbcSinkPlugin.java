@@ -4,18 +4,21 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.SinkConfig;
+import top.chenjipdc.mocks.config.sink.db.JdbcSinkConfig;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 import top.chenjipdc.mocks.utils.StringUtils;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 
 @Slf4j
-public abstract class JdbcSinkPlugin<T extends SinkConfig> extends AbstractSinkPlugin<T> {
+public abstract class JdbcSinkPlugin<T extends JdbcSinkConfig> extends AbstractSinkPlugin<T> {
 
     protected Connection connection;
 
@@ -26,8 +29,52 @@ public abstract class JdbcSinkPlugin<T extends SinkConfig> extends AbstractSinkP
     public void init(Config.SinksConfig config) {
         super.init(config);
 
-        this.config = config;
-        startTiming();
+        initConfig(config.getConfig());
+
+        init();
+    }
+
+    public abstract void initConfig(String config);
+
+    public void initProperties(Properties props) {
+
+    }
+
+    @SneakyThrows
+    private void init() {
+        Class.forName(sinkConfig.getDriverClass());
+
+        Properties props = new Properties();
+        props.setProperty("user",
+                sinkConfig.getUsername());
+        props.setProperty("password",
+                sinkConfig.getPassword());
+
+        initProperties(props);
+
+        connection = DriverManager.getConnection(
+                sinkConfig.getJdbcUrl(),
+                props);
+
+        if (sinkConfig.getInitSql() != null) {
+            logSql(sinkConfig.getInitSql());
+            try (PreparedStatement statement = connection.prepareStatement(sinkConfig.getInitSql())) {
+                statement.execute();
+            }
+        }
+    }
+
+    @Override
+    public void sink(Map<String, Object> values) {
+        String prepareSql = prepareSql(sinkConfig.getTable());
+        logSql(prepareSql);
+        if (sinkConfig.getBatch() > 1) {
+            batchInsert(prepareSql,
+                    values);
+        } else {
+            insertOne(prepareSql,
+                    values);
+        }
     }
 
     @SneakyThrows
@@ -117,6 +164,17 @@ public abstract class JdbcSinkPlugin<T extends SinkConfig> extends AbstractSinkP
 
     public Object wrapValue(Object value) {
         return value;
+    }
+
+    private void logSql(String sql) {
+        if (sinkConfig.getLogSql()) {
+            log.info(sql);
+        }
+    }
+
+    @Override
+    public String logPrefix() {
+        return "表" + sinkConfig.getTable();
     }
 
 }

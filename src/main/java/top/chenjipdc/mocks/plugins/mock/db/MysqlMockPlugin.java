@@ -20,11 +20,4 @@ public class MysqlMockPlugin extends JdbcMockPlugin<MysqlMockConfig> {
         mockConfig = JSONObject.parseObject(config,
                 MysqlMockConfig.class);
     }
-
-    public void initProperties(Properties props) {
-        props.setProperty("user",
-                mockConfig.getUsername());
-        props.setProperty("password",
-                mockConfig.getPassword());
-    }
 }
