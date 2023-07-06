@@ -39,6 +39,8 @@
         <clickhouse-jdbc.version>0.4.6</clickhouse-jdbc.version>
         <postgresql.version>42.6.0</postgresql.version>
 
+        <jedis.version>4.4.3</jedis.version>
+
         <!-- scope-->
         <dependency.scope>compile</dependency.scope>
     </properties>
@@ -152,6 +154,13 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
             <scope>${dependency.scope}</scope>
         </dependency>
 
