@@ -97,10 +97,15 @@ public class Config {
         private Integer loop;
 
         /**
-         * key为表字段名称, value为数据源ds的mocks的alias
+         * key为表字段名称, value为数据源mock的aliases
          */
         @JSONField(deserializeUsing = ObjectReaderImplLinkHashMapString.class)
         private Map<String, String> mappings;
+
+        /**
+         * 过滤器，mapping跟converter之前执行，字段需要使用mock上的原始字段
+         */
+        private List<FilterConfig> filters;
 
         /**
          * 字段转换器
@@ -117,7 +122,6 @@ public class Config {
     @Getter
     @Setter
     public static class ConverterConfig {
-
         /**
          * 需要转换的字段
          */
@@ -137,7 +141,6 @@ public class Config {
     @Getter
     @Setter
     public static class CacheConfig {
-
         /**
          * 缓存类型
          */
@@ -145,6 +148,21 @@ public class Config {
 
         /**
          * 缓存配置: json
+         */
+        private String config = "{}";
+
+    }
+
+    @Getter
+    @Setter
+    public static class FilterConfig {
+        /**
+         * 过滤器类型
+         */
+        private String type;
+
+        /**
+         * 过滤器配置: json
          */
         private String config = "{}";
 

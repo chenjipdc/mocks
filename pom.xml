@@ -41,6 +41,8 @@
 
         <jedis.version>4.4.3</jedis.version>
 
+        <mvel2.version>2.5.0.Final</mvel2.version>
+
         <!-- scope-->
         <dependency.scope>compile</dependency.scope>
     </properties>
@@ -164,6 +166,12 @@
             <scope>${dependency.scope}</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.mvel</groupId>
+            <artifactId>mvel2</artifactId>
+            <version>${mvel2.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
 
 
         <dependency>
