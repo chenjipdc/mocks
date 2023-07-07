@@ -4,14 +4,14 @@ import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.plugins.converter.ConverterPlugin;
 
 @AutoService(ConverterPlugin.class)
-public class ToStringConverterPlugin implements ConverterPlugin<Long, String> {
+public class ToStringConverterPlugin implements ConverterPlugin<Object, String> {
     @Override
     public String type() {
         return "to-string";
     }
 
     @Override
-    public String convert(Long value) {
+    public String convert(Object value) {
         if (value == null) {
             return null;
         }
