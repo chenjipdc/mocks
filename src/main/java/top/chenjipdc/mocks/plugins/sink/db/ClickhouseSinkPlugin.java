@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.sink.db.ClickhouseSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 
 @Slf4j
 @AutoService(SinkPlugin.class)

@@ -4,8 +4,7 @@ import com.google.common.collect.ArrayListMultimap;
 import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.SinkConfig;
-import top.chenjipdc.mocks.plugins.ConverterPlugin;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.converter.ConverterPlugin;
 
 import java.util.*;
 

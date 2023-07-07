@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import lombok.SneakyThrows;
 import top.chenjipdc.mocks.config.converter.normal.DateConverterConfig;
-import top.chenjipdc.mocks.plugins.ConverterPlugin;
+import top.chenjipdc.mocks.plugins.converter.ConverterPlugin;
 import top.chenjipdc.mocks.utils.DateUtils;
 
 import java.text.SimpleDateFormat;

@@ -6,7 +6,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.mq.KafkaSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 
 import java.util.Map;

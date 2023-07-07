@@ -3,7 +3,7 @@ package top.chenjipdc.mocks.plugins.mock.db;
 import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.config.mock.db.PostgreSQLMockConfig;
-import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.MockPlugin;
 import top.chenjipdc.mocks.utils.StringUtils;
 
 import java.util.*;

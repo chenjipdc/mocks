@@ -3,7 +3,7 @@ package top.chenjipdc.mocks.run;
 import lombok.Getter;
 import lombok.Setter;
 import top.chenjipdc.mocks.config.Config;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 
 import java.util.Map;
 

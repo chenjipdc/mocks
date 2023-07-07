@@ -8,7 +8,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import lombok.SneakyThrows;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.mq.RabbitMqSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 
 import java.io.IOException;

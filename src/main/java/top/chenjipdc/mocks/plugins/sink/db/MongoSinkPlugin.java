@@ -9,7 +9,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.db.MongoSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 
 import java.util.ArrayList;

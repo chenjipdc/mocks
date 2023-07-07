@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins;
+package top.chenjipdc.mocks.plugins.sink;
 
 import java.util.Map;
 

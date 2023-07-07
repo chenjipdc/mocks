@@ -8,9 +8,8 @@ import com.mongodb.client.model.Projections;
 import org.bson.Document;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.mock.db.MongoMockConfig;
-import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
-import top.chenjipdc.mocks.utils.NumericUtils;
 
 import java.math.BigInteger;
 import java.util.*;

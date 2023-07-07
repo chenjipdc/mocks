@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins;
+package top.chenjipdc.mocks.plugins.mock;
 
 import top.chenjipdc.mocks.config.Config;
 

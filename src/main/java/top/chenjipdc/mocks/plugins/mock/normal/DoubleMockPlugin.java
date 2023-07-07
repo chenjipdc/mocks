@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.mock.normal.DoubleMockConfig;
-import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.MockPlugin;
 import top.chenjipdc.mocks.plugins.mock.AbstractMockPlugin;
 import top.chenjipdc.mocks.utils.NumericUtils;
 

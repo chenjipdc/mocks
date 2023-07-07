@@ -7,7 +7,7 @@ import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.mq.RocketMqSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 
 import java.util.Map;

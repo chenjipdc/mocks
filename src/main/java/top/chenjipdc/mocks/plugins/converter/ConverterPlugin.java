@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.plugins;
+package top.chenjipdc.mocks.plugins.converter;
 
 public interface ConverterPlugin<T, R> {
     /**

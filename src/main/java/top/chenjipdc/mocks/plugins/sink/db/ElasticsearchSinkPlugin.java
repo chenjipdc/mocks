@@ -20,7 +20,7 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.sink.db.ElasticsearchSinkConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.plugins.sink.AbstractSinkPlugin;
 
 import java.util.ArrayList;

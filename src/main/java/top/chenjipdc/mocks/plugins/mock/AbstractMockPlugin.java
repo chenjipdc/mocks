@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.mock.MockConfig;
-import top.chenjipdc.mocks.plugins.MockPlugin;
 import top.chenjipdc.mocks.plugins.cache.CachePlugin;
 
 import java.util.*;

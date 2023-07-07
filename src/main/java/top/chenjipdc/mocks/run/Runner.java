@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import top.chenjipdc.mocks.config.Config;
 import top.chenjipdc.mocks.config.ConfigLoader;
 import top.chenjipdc.mocks.config.PoolsConfig;
-import top.chenjipdc.mocks.plugins.SinkPlugin;
+import top.chenjipdc.mocks.plugins.sink.SinkPlugin;
 import top.chenjipdc.mocks.pools.PoolsService;
 
 import java.util.*;

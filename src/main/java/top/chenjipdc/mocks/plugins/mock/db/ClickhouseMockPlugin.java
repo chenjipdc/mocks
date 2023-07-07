@@ -3,7 +3,7 @@ package top.chenjipdc.mocks.plugins.mock.db;
 import com.alibaba.fastjson2.JSONObject;
 import com.google.auto.service.AutoService;
 import top.chenjipdc.mocks.config.mock.db.ClickhouseMockConfig;
-import top.chenjipdc.mocks.plugins.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.MockPlugin;
 
 @AutoService(MockPlugin.class)
 public class ClickhouseMockPlugin extends JdbcMockPlugin<ClickhouseMockConfig> {

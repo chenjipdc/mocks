@@ -3,8 +3,8 @@ package top.chenjipdc.mocks.run;
 import lombok.Getter;
 import lombok.Setter;
 import top.chenjipdc.mocks.config.Config;
-import top.chenjipdc.mocks.plugins.MockPlugin;
-import top.chenjipdc.mocks.plugins.MockLeftCycle;
+import top.chenjipdc.mocks.plugins.mock.MockPlugin;
+import top.chenjipdc.mocks.plugins.mock.MockLeftCycle;
 
 import java.util.*;
 import java.util.stream.Collectors;
