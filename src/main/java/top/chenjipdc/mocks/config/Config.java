@@ -63,6 +63,21 @@ public class Config {
         private Map<String, String> aliases;
 
         /**
+         * 过滤器，aliases之后
+         */
+        private List<FilterConfig> filters;
+
+        /**
+         * 字段转换器
+         */
+        private List<ConverterConfig> converters;
+
+        /**
+         * filter是否前置到convert之前
+         */
+        private Boolean filterBeforeConverter = Boolean.TRUE;
+
+        /**
          * 数据缓存配置，默认memory缓存
          */
         private CacheConfig caching;

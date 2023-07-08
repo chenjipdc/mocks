@@ -54,6 +54,9 @@ public class SinkService implements LifeCycle {
     }
 
     public boolean filter(Map<String, Object> values) {
+        if (values == null || values.isEmpty()) {
+            return false;
+        }
         if (filters != null && filters.size() > 0) {
             // 只要有过滤器未匹配上，就过滤掉这条数据
             for (FilterPlugin filter : filters) {
@@ -80,6 +83,8 @@ public class SinkService implements LifeCycle {
 
     public void stop() {
         sinkPlugin.stop();
+
+        filters.forEach(FilterPlugin::stop);
     }
 
 }
