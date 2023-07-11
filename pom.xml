@@ -45,6 +45,8 @@
 
         <mvel2.version>2.5.0.Final</mvel2.version>
 
+        <jsch.version>0.1.55</jsch.version>
+
         <!-- scope-->
         <dependency.scope>compile</dependency.scope>
     </properties>
@@ -193,6 +195,13 @@
             <groupId>org.mvel</groupId>
             <artifactId>mvel2</artifactId>
             <version>${mvel2.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>${jsch.version}</version>
             <scope>${dependency.scope}</scope>
         </dependency>
 
