@@ -155,17 +155,11 @@ public class MockService implements LifeCycle {
         if (filterBeforeConverter) {
             // filter
             if (filters != null && !filters.isEmpty()) {
-                // 未匹配上则继续拿下一条数据
-                boolean filter;
-                do {
-                    values = mockPlugin.value();
-                    if (values == null || values.isEmpty()) {
-                        break;
-                    }
-                    filter = filter(values,
-                            group);
-                } while (!filter);
-
+                values = mockPlugin.value();
+                if (values != null && !values.isEmpty() && filter(values,
+                        group)) {
+                    values = null;
+                }
             } else {
                 values = mockPlugin.value();
             }
@@ -175,18 +169,12 @@ public class MockService implements LifeCycle {
                     group);
         } else {
             if (filters != null && !filters.isEmpty()) {
-
-                // 未匹配上则继续拿下一条数据
-                boolean filter;
-                do {
-                    values = convert(mockPlugin.value(),
-                            group);
-                    if (values == null || values.isEmpty()) {
-                        break;
-                    }
-                    filter = filter(values,
-                            group);
-                } while (!filter);
+                values = convert(mockPlugin.value(),
+                        group);
+                if (values != null && !values.isEmpty() && filter(values,
+                        group)) {
+                    values = null;
+                }
             } else {
                 values = convert(mockPlugin.value(),
                         group);
