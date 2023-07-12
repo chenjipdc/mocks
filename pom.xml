@@ -42,6 +42,7 @@
         <hbase-client.version>2.1.0</hbase-client.version>
 
         <jedis.version>4.4.3</jedis.version>
+        <ignite-core.version>2.15.0</ignite-core.version>
 
         <mvel2.version>2.5.0.Final</mvel2.version>
 
@@ -190,6 +191,14 @@
             <version>${jedis.version}</version>
             <scope>${dependency.scope}</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.ignite</groupId>
+            <artifactId>ignite-core</artifactId>
+            <version>${ignite-core.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.mvel</groupId>
