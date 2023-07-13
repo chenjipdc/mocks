@@ -1,4 +1,4 @@
-package top.chenjipdc.mocks.config.sink.other;
+package top.chenjipdc.mocks.config.sink.log;
 
 import lombok.Getter;
 import lombok.Setter;
