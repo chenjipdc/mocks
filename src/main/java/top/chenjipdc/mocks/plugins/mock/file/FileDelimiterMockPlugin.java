@@ -43,8 +43,7 @@ public class FileDelimiterMockPlugin extends AbstractMockPlugin<Object, FileDeli
                 map.put(aliases.get(columns.get(i)),
                         object);
             }
-            cachePlugin.cache(JSONObject.parseObject(JSONObject.toJSONString(map),
-                    LinkedHashMap.class));
+            cachePlugin.cache(map);
 
             if (mockConfig.getLimit() != null && cachePlugin.size() > mockConfig.getLimit()) {
                 break;

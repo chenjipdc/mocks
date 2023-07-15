@@ -9,6 +9,6 @@ public class MockConfig {
     /**
      * 是否随机
      */
-    private Boolean random = Boolean.FALSE;
+    private Boolean random = Boolean.TRUE;
 
 }
