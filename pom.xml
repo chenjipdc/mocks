@@ -38,6 +38,8 @@
         <jackson-databind.version>2.12.3</jackson-databind.version>
         <clickhouse-jdbc.version>0.4.6</clickhouse-jdbc.version>
         <postgresql.version>42.6.0</postgresql.version>
+        <mssql-jdbc.version>12.3.1.jre8-preview</mssql-jdbc.version>
+
         <hadoop.version>3.0.0</hadoop.version>
         <hbase-client.version>2.1.0</hbase-client.version>
 
@@ -163,6 +165,14 @@
             <version>${postgresql.version}</version>
             <scope>${dependency.scope}</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>${mssql-jdbc.version}</version>
+            <scope>${dependency.scope}</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.hadoop</groupId>

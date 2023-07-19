@@ -42,13 +42,19 @@ public abstract class JdbcSinkPlugin<T extends JdbcSinkConfig> extends AbstractS
 
     @SneakyThrows
     private void init() {
-        Class.forName(sinkConfig.getDriverClass());
+        if (sinkConfig.getDriverClass() != null) {
+            Class.forName(sinkConfig.getDriverClass());
+        }
 
         Properties props = new Properties();
-        props.setProperty("user",
-                sinkConfig.getUsername());
-        props.setProperty("password",
-                sinkConfig.getPassword());
+        if (sinkConfig.getUsername() != null) {
+            props.setProperty("user",
+                    sinkConfig.getUsername());
+        }
+        if (sinkConfig.getPassword() != null) {
+            props.setProperty("password",
+                    sinkConfig.getPassword());
+        }
 
         initProperties(props);
 
